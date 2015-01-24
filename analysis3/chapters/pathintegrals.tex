@@ -1,0 +1,261 @@
+\section{Wege und Kurven, Parametrisierungen, Tangentenvektor}
+\begin{definition}[Weg]
+	Sei $I \subseteq \mathbb{R}$. Eine \textit{stetige} Abbildung $\gamma: I \rightarrow \mathbb{R}^n$ hei\ss t Weg.
+\end{definition}
+
+Sei im Folgenden $\gamma$ stets ein so definierter Weg.
+
+\begin{definition}[Regul\"arer Weg]
+	Ein Weg $\gamma$ hei\ss t \textit{regul\"ar} wenn $\gamma$ stetig differenzierbar ist und $\forall t \in I: \dot{\gamma}(t) \neq 0$.
+\end{definition}
+
+\begin{definition}[Parametertransformation]
+	Seien $I,J \subseteq \mathbb{R}$ Intervalle.
+	Eine \textit{zul\"assige Parametertransformation} ist eine stetig differenzierbare Abbildung $\varphi: I \rightarrow J$ mit $\dot{\varphi}(t) > 0$, $\forall t \in I$
+\end{definition}
+
+\begin{definition}[Kurve]
+	Eine orientierte (regul\"are) Kurve $C$ ist eine \"Aquivalenzklasse von (regul\"aren) Wegen, wobei zwei Wege $\gamma_1$ und $\gamma_2$ genau dann \"aquivalent sind, wenn es eine zul\"assige Parametertransformation $\varphi$ gibt, sodass $\gamma_1 = \gamma_2 \circ \varphi$.
+	
+	Jeder Repr\"asentant $\gamma$ von $C$ hei\ss t eine Parametrisierung von $C$.
+\end{definition}
+
+
+
+
+\section{Wegl\"ange, Parametrisierung mittels Wegl\"ange}
+\begin{definition}[Bogenl\"ange]
+	Sei $\gamma$ ein stückweise stetig differenzierbarer Weg, dann hei\ss t 
+	
+	$$L(\gamma) := \int_a^b ||\dot{\gamma}(t)||dt$$
+	
+	die Bogenl\"ange von $\gamma$.
+\end{definition}
+
+\begin{lemma}[Invarianz unter Parametertransformation]
+	Seien $\gamma_1$ und $\gamma_2$ \"aquivalent, dann gilt $L(\gamma_1) = L(\gamma_2)$.
+\end{lemma}
+\begin{proof}
+	Substitution.
+\end{proof}
+\todo{evt. Beweis schreiben}
+\begin{corollary}
+	Die L\"ange einer regul\"aren Kurve ist wohldefiniert.
+\end{corollary}
+
+\begin{definition}[Parametrisierung nach der Wegl\"ange]
+	Sei $\tilde\gamma$ eine Parametrisierung, sodass $||\dot{\tilde\gamma}(t)|| = 1$. Dann ist $\tilde\gamma$ die \textit{Parametrisierung nach der Wegl\"ange}.
+\end{definition}
+
+%Gegeben $\gamma:[a,b]\rightarrow \mathbb R^n$, ein regul\"arer Weg. Suche zul\"assige Parametertransformation $\varphi$, sodass für $\tilde\gamma := \gamma\circ\varphi$ gilt: $||\dot{\tilde\gamma}(t)|| = 1$.
+
+%$\dot{\tilde\gamma} = (\dot\gamma \circ \varphi)\dot\varphi$
+\todo{evt. Methode zur Ermittlung nachliefern}
+
+
+
+
+\section{Vektorfelder und 1-Formen}
+Im Folgenden sei $U \subseteq \mathbb R^n$, $p \in U$ und $f: U\rightarrow \mathbb R^n$ eine $\mathcal C^1$ Funktion.
+\begin{definition}[Vektorfeld]
+	Eine Abbildung $v: U \rightarrow \mathbb R^n$ hei\ss t Vektorfeld auf $U$.
+\end{definition}
+
+\begin{definition}[Gradientenfeld]
+	Sei $U$ zus\"atzlich offen, dann nennt man das stetige Vektorfeld $v(p) := \nabla f(p)$ ein Gradientenfeld.
+\end{definition}
+
+\begin{definition}[1-Form]
+	Eine 1-Form auf $U$ ist eine Abbildung $\omega: U\rightarrow (\mathbb R^n)^*$.
+\end{definition}
+
+\begin{remark}[Spezialfall: Gradient]
+	Unter der Identifikation des Gradienten mit dem \textit{Zeilen}vektor der partiellen Ableitungen ist $\nabla f: U\rightarrow (\mathbb R^n)^*$ ist eine 1-Form.\footnote{$\nabla f(p)$ w\"are im eindimensionalen Fall z.B. gerade die Steigung im Punkt $p$, aber nicht als Zahl, sondern als lineares Funktional (i.e. Multiplikation mit der Steigung).}
+\end{remark}
+
+\begin{definition}[\"Au\ss eres Differential]
+	Die durch $\nabla$ induzierte 1-Form bezeichnen wir mit $df$.
+\end{definition}
+
+
+\begin{remark}[Darstellung durch das innere Produkt]	
+	Lineare Funktionale kann man stets als inneres Produkt schreiben, also erhalten wir allgemeiner f\"ur $h \in \mathbb R^n$:
+	
+	$$\underbrace{\underbrace{df(p)}_{\in (\mathbb R^n)^*}(h)}_{\in \mathbb R} = \langle \nabla f(p),h\rangle$$
+\end{remark}
+
+\begin{definition}[Basis]
+	Mit $dx_j$ bezeichnen wir von der j-ten Koordinatenprojektion $pr_j$\footnote{$pr_j(x_1,\dots,x_n) = x_j$} induzierte 1-Form.
+\end{definition}
+
+\begin{remark}[Dualit\"at]
+	Sei $\{e_1,\dots,e_n\}$ die Standardbasis in $\mathbb R^n$, dann gilt $\forall p \in U$:
+	
+	\begin{equation*}\begin{aligned}
+		dx_j(p)(e_i) &= \langle \nabla pr_j(p), e_i \rangle\\
+					 &= \langle e_j, e_i \rangle \\&= \delta_{ij}
+	\end{aligned}\end{equation*}
+
+	Also ist $\{dx_1,\dots,dx_n\}$ die zu $\{e_1,\dots,e_n\}$ duale Basis; daraus folgt die folgende Darstellung von $df(p)$:
+	
+		$$df(p) = \sum_{i=1}^n \underbrace{D_i f(p)}_{\in \mathbb R}\underbrace{dx_i(p)}_{\in (\mathbb R^n)^*}$$
+\end{remark}
+
+\begin{proposition}[Identifikation von 1-Formen mit Vektorfeldern]
+	Sei $U$ offen.
+	
+	F\"ur jede 1-Form $\omega$ existiert genau ein $f=(f_1,\dots,f_n): U\rightarrow \mathbb R^n$ sodass $\forall p\in U$:
+	
+	\begin{equation}\label{eq:1formAlsKomponentenfunktionen}
+		\omega(p) = \sum_{i=1}^n f_i(p) dx_i(p)
+	\end{equation}
+
+	
+	Au\ss erdem ist $v=(v_1,\dots,v_n) \mapsto \sum_{i=1}^n v_i dx_i$  ein Isomorphismus (i.e. bijektiv und linear).
+\end{proposition}
+\begin{proof}
+	Technischer Beweis.
+\end{proof}
+
+\begin{definition}[Stetigkeit und Differenzierbarkeit einer 1-Form]
+	Eine 1-Form ist genau dann stetig/differenzierbar wenn es all ihre Komponentenfunktionen (vgl. \eqref{eq:1formAlsKomponentenfunktionen}) sind.
+\end{definition}
+
+
+
+
+\section{Wegintegral (Kurvenintegral) einer 1-Form}
+\begin{definition}[Wegintegral von $\omega$ \"uber $\gamma$]
+	$$\int_\gamma \omega := \int_a^b \underbrace{\omega(\gamma(t)}_{\in (\mathbb R^n)^*})(\underbrace{\dot\gamma(t)}_{\in \mathbb R^n})dt$$
+\end{definition}
+
+\begin{remark}
+	Findet man eine Darstellung von $\omega$ mit Komponentenfunktionen $(f_1,\dots,f_n)=f$, so haben wir:
+	
+	$$\omega(\gamma(t))(\dot\gamma(t)) = \sum_{i=1}^n f_i(\gamma(t))(\dot\gamma(t))_i = \langle f(\gamma(t)), \dot\gamma(t)\rangle$$
+\end{remark}
+
+\begin{lemma}[Unabh\"angigkeit des Wegintegrals von der Parametrisierung]
+	Sei $\varphi$ eine zul\"a\ss ige Parametertransformation, dann gilt:
+	
+	\begin{equation}\label{eq:wegIntUnabhVonParametrisierung}
+		\int_{\gamma\circ\varphi} \omega = \int_\gamma \omega
+	\end{equation}
+\end{lemma}
+
+\begin{proof}
+	Substitution.
+\end{proof}
+
+\begin{definition}[Kurvenintegral]
+	Sei $\gamma$ ein beliebiger Repr\"asentant der Kurve $C$, dann definiert man $\int_C \omega := \int_\gamma \omega$.
+\end{definition}
+\begin{remark}
+	Wegen \eqref{eq:wegIntUnabhVonParametrisierung} ist das Kurvenintegral wohldefiniert.
+\end{remark}
+
+\begin{remark}
+	Mit der Identifikation von 1-Formen und Vektorfeldern (vgl. \eqref{eq:1formAlsKomponentenfunktionen}, kurz $\tilde v = \langle v, dx\rangle$) k\"onnen wir folgende Definition vornehmen:
+\end{remark}
+\begin{definition}[Kurvenintegrale \"uber Vektorfeler]
+	$$\int_C \tilde v = \int_C \langle v,dx \rangle = \int_a^b \langle v(\gamma(t)), \dot\gamma(t)\rangle dt$$
+\end{definition}
+
+
+
+
+\section{Stammfunktionen, S\"atze \"uber deren Existenz}
+\begin{definition}[Stammfunktion einer 1-Form]
+	$F:U\rightarrow \mathbb R$ ist eine Stammfunktion von $\omega$ genau dann wenn $dF = \omega$.\footnote{$dF = \sum_{i=1}^n \frac{\partial F}{\partial x_i} dx_i$}
+\end{definition}
+
+\begin{definition}[Exaktheit]
+	Eine 1-Form hei\ss t exakt, wenn sie eine Stammfunktion besitzt.
+\end{definition}
+
+\begin{remark}[Spezialfall: Vektorfelder]
+	$v$ ist ein Gradientenfeld $\Leftrightarrow$ $\tilde v$ ist exakt.
+\end{remark}
+
+\begin{lemma}[``Hauptsatz'' f\"ur 1-Formen]
+	Sei $\omega$ eine exakte 1-Form und $F$ eine Stammfunktion von $\omega$. F\"ur \textit{jeden} st\"uckweisen $\mathcal C^1$ Weg $\gamma: [a,b] \rightarrow U$ gilt:
+	
+	\begin{equation}\label{eq:integralVonExakten1Formen}
+		\int_\gamma \omega = \int_\gamma dF = F(\gamma(b)) - F(\gamma(a))
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	Kettenregel.
+\end{proof}
+
+\begin{corollary}[Integration \"uber geschlossene Wege]
+	$\omega$ exakt $\Rightarrow$ $\int_\gamma \omega = 0$ f\"ur alle $\gamma$ mit $\gamma(a)=\gamma(b)$.
+\end{corollary}
+
+\begin{definition}[Gebiet]
+	Ein Gebiet im $\mathbb R^n$ ist eine offene und wegzusammenh\"angende Menge $U \subseteq \mathbb R^n$.
+\end{definition}
+
+\begin{lemma}[St\"uckweise Differenzierbarkeit von Wegen in Gebieten]
+	In einem Gebiet lassen sich je zwei Punkt nicht nur durch einen stetigen Weg, sondern sogar durch einen st\"uckweise stetig differenzierbaren Weg verbinden.
+\end{lemma}
+\begin{proof}
+	Idee: Da man in einer offenen Teilmenge ist, kann man einen Weg als endliche Vereinigung linearer (also insbesondere differenzierbarer) Abschnitte mit Abstand echt gr\"o\ss er $0$ zum Rand konstruieren.
+\end{proof}
+
+\begin{theorem}[Zusammenhang exakt und Integral \"uber geschlossene Wege]
+	Sei $U \subseteq \mathbb R^n$ ein Gebiet, $\omega$ eine stetige 1-Form auf $U$ und $\gamma$ ein beliebiger geschlossener, st\"uckweise stetig differenzierbarer Weg in $U$. Dann gilt:
+
+	$\omega$ exakt in $U$ $\Leftrightarrow$ $\int_\gamma \omega = 0$
+\end{theorem}
+\begin{proof}
+	``$\Rightarrow$'' wurde bereits gezeigt.
+	
+	``$\Leftarrow$'': Idee: Setze $F(x) = \int_{x_0}^x \omega = \int_\alpha \omega$ mit $\alpha(0)=x_0, \alpha(1)=x$.
+	
+	Wohldefiniert, denn f\"ur jeden\footnote{Alle Wege m\"ussen nat\"urlich in $U$ liegen.} anderen Weg $\beta$ mit $\beta(0)=x_0, \beta(1)=x$ gilt: $\alpha + (-\beta)=:\gamma$ ist ein geschlossener Weg und $0 = \int_\gamma \omega = \int_\alpha \omega - \int_\beta \omega$.
+	
+	Um zu zeigen, dass das tats\"achlich eine Stammfunktion von $\omega$ ist, i.e. $dF = \omega$, zeigt man, dass f\"ur $\omega = \sum_{i=1}^n f_i dx_i$ gilt: $f_i = D_i F$.
+	
+	Betrachte daf\"ur $F(x+he_i)-F(x)$ im Grenzwert $h\rightarrow 0$.\todo{evt. Rest des Beweises nachbringen, ist aber auch nur noch recht technisch.}
+\end{proof}
+
+
+
+\section{Integrabilit\"atsbedingungen und Lemma von Poincar\'e}
+\begin{definition}[Geschlossenheit]
+	Eine stetig differenzierbare 1-Form $\omega = \sum_{i=1}^n f_i dx_i$ auf $U$ hei\ss t geschlossen, falls
+	
+	\begin{equation}\label{eq:integrationsbedingungenFuerGeschlossenheit}
+		D_i f_j = D_j f_i
+	\end{equation}
+
+\end{definition}
+
+\begin{theorem}[Pointcar\'e]
+	Sei $U$ ein sternf\"ormiges Gebiet und $\omega$ eine stetig differenzierbare 1-Form, dann gilt:
+	
+	$\omega$ exakt $\Leftrightarrow$ $\omega$ geschlossen\footnote{``Geschlossenheit'' hat \textit{nichts} mit dem Integral \"uber geschlossene Wege zu tun. Das sind nur die Integrationsbedingungen \eqref{eq:integrationsbedingungenFuerGeschlossenheit}!}
+\end{theorem}
+\begin{proof}
+	``$\Rightarrow$'': Nach dem Satz von Schwarz gilt: $\omega$ exakt $\Rightarrow$ $\omega$ geschlossen.
+	
+	``$\Leftarrow$'': Sei oBdA $U$ sternf\"ormig bez. $0$. Dann definiert man $F(x) := \int_0^1 \omega(tx)(x)dt$.
+	
+	Als Parameterintegral ist es stetig differenzierbar.
+	
+	Es bleibt zu zeigen, dass $D_i F = f_i$. \todo{technischer Beweis, evt. nachbringen}
+	
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
