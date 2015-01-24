@@ -1,9 +1,141 @@
 \section{(Satz \"uber implizite Funktionen und) Satz von der Umkehrabbildung}
+\begin{theorem}[Satz \"uber implizite Funktionen]
+	Sei $(a,b) \in U_1 \times U_2 \subseteq \mathbb R^k \times \mathbb R^m$ ($U_1, U_2$ offen) mit $F: U_1 \times U_2 \rightarrow \mathbb R^m$, $F(a,b) = 0$ und $\frac{\partial F}{\partial y}(a,b)$\footnote{$y$ ist das zweite Argument} invertierbar.
+	
+	Dann gibt es offene Umgebungen $V_1\subseteq U_1$ von $a$, $V_2\subseteq U_2$ von $b$ und eine eindeutige, stetig differenzierbare Abbildung $g:V_1 \rightarrow V_2$ mit $g(a)=b$ und $F(x,g(x))$ f\"ur alle $(x,y)\in V_1\times V_2$.
+	
+	Au\ss erdem gilt $Dg(x) = -\left(\frac{\partial F}{\partial y}(x,g(x)) \right)^{-1}\frac{\partial F}{\partial x}(x,g(x))$.
+\end{theorem}
+\begin{remark}[Merkhilfe]
+	$$DF(x,g(x)) = \frac{\partial F}{\partial x}(x,g(x)) + \frac{\partial F}{\partial y}(x,g(x)) Dg(x)$$
+	Da $F(x,g(x))=0$ in einer geeigneten Umgebung ist $$Dg(x)=-\left(\frac{\partial F}{\partial y}(x,g(x)) \right)^{-1}\frac{\partial F}{\partial x}(x,g(x))$$
+\end{remark}
+
+\begin{theorem}[Satz von der Umkehrabbildung]
+	Sei $U \subseteq \mathbb R^n$ offen, $f: U \rightarrow \mathbb R^n$ stetig differenzierbar, $a\in U$ und $b:=f(a)$.
+	
+	Falls $Df(a)$ invertierbar ist, dann existiert eine offene Umgebung $U_0$ von $a$ und analog $V_0$ eine offene Umgebung von $b$ mit $f|_{U_0}: U_0 \rightarrow V_0$ bijektiv und f\"ur $g:=\left(f|_{U_0} \right)^{-1}$ gilt die Gleichung
+	
+	$$Dg(b)=(Df(a))^{-1}$$
+\end{theorem}
+\begin{proof}
+	\todo{evt. Beweisidee bringen}
+\end{proof}
+\begin{remark}[Aussage des Theorems]
+	Um zu \"uberpr\"ufen ob eine Abbildung lokal invertierbar ist reicht es sich die Ableitung an dem Punkt anzusehen.
+\end{remark}
+
+
+
 
 \section{Immersion}
+\begin{definition}[Diffeomorphismus]
+	$U, V\subseteq \mathbb R^n$ offen, $f:U \rightarrow V$ bijektiv und $\mathcal C^1$. Ist $f^{-1}$ ebenfalls $\mathcal C^1$, so nennt man $f$ einen $\mathcal C^1$-Diffeomorphismus.
+\end{definition}
+\begin{lemma}[$\mathcal C^k$-Diffeomorphismen]
+	Ist $f$ ein $\mathcal C^1$-Diffeomorphismus und $k$-mal stetig differenzierbar, dann ist $f$ ein $\mathcal C^k$-Diffeomorphismus.
+\end{lemma}
+
+\begin{definition}[Immersion]
+	Sei $T\subseteq \mathbb R^k$ offen, $\Phi:T\rightarrow \mathbb R^n$ stetig differenzierbar und $\forall t\in T: \text{Rang}D\Phi(t)=k$ dann hei\ss t $\Phi$ Immersion.
+\end{definition}
+\begin{definition}[k-Fl\"achen]
+	$F:=\Phi(T)\subseteq \mathbb R^n$ wird als parametrisierte $k$-Fl\"ache bezeichnet.
+\end{definition}
+
+\begin{remark}[Eigenschaften von Immersionen]\_\newline
+	\begin{itemize}
+		\item $\forall t\in T: \text{Rang}D\Phi(t)=k$ impliziert $k\leq n$.
+		\item $\forall t\in T: \text{Rang}D\Phi(t)=k$ impliziert auch, dass man f\"ur jedes $t\in T$ $k$ von den $n$ Komponentenfunktionen ausw\"ahlen k\"onnen, sodass $\text{det}\frac{\partial(\Phi_{i_1},\dots,\Phi_{i_k})}{\partial(t_1,\dots,t_k)}(t)\neq 0$ f\"ur eine offene Umgebung von $t$.
+		\item F\"ur $k=1$ erhalten wir regul\"are Kurven.
+		\item F\"ur $k=n$ ist $\Phi$ ein lokaler $\mathcal C^1$-Diffeomorphismus.
+	\end{itemize}
+\end{remark}
+\begin{definition}[Hom\"oomorphismus]
+	Ist $\Phi$ stetig und bijektiv mit stetiger Inverser, nennt man es einen Hom\"oomorphismus.
+\end{definition}
+
+\begin{lemma}[Immersion ist ein Hom\"oomorphismus]
+	$\Phi:T \rightarrow \mathbb R^n$ eine Immersion. Dann gibt es f\"ur alle $t\in T$ eine offene Umgebung $V \subseteq T$, sodass $\Phi|_V$ ein Hom\"oomorphismus ist.
+\end{lemma}
+\begin{proof}
+	Idee: Satz von der Umkehrabbildung und Einschr\"ankung auf die Komponenten f\"ur die $\text{det}\frac{\partial(\Phi_{i_1},\dots,\Phi_{i_k})}{\partial(t_1,\dots,t_k)}(t)\neq 0$ gilt.
+\end{proof}
+
+
 
 \section{Untermannigfaltigkeit und Charakterisierungen}
+\begin{definition}[Untermannigfaltigkeit]
+	$M \subseteq \mathbb R^n$ hei\ss t $k$-dimensionale Untermannigfaltigkeit von $\mathbb R^n$ falls $\forall a\in M: \exists$ offene Umgebung $U\subseteq \mathbb R^n$ von $a$, $T\subseteq \mathbb R^k$ und eine Immersion $\Phi:T\rightarrow \mathbb R^n$, sodass:
+	\begin{itemize}
+		\item $\Phi$ ist ein Hom\"oomorphismus $T\rightarrow \Phi(T)$\todo{wof\"ur braucht man die Bedingung?}
+		\item $\Phi(T) = M\cap U$
+	\end{itemize}
+	
+	Weiters nennen wir $\Phi:T \rightarrow M\cap U$ eine \textit{lokale Parametrisierung} von $M$ nahe $a$ und $\Phi^{-1}$ eine \textit{Karte}.
+	
+	Eine Abbildung $f:M\rightarrow N$ hei\ss t differenzierbar, falls sie \"uberall lokal differenzierbar ist.
+\end{definition}
+
+\todo{f\"ur konkrete Beispiele wie Rotationsfl\"achen, etc. bitte das Skriptum nehmen.}
+
+\begin{theorem}
+	F\"ur $M\subseteq \mathbb R^n$ sind folgende Aussagen \"aquivalent:
+	
+	\begin{itemize}
+		\item $M$ ist eine $k$-dimensionale Mannigfaltigkeit
+		\item \textit{Lokale Darstellung als Graph:} $\forall a=(a_1,\dots,a_k,\dots,a_n)\in M$ gilt: zu $a'=(a_1,\dots,a_k)$ und $a''=(a_{k+1},\dots,a_n)$\footnote{evt. nach Umnummerierung} gibt es offene Umgebungen $U'\subseteq \mathbb R^k$ und $U''\subseteq \mathbb R^{n-k}$ und eine stetig differenzierbare Abbildung $g:U'\rightarrow U''$, sodass $M\cap (U'\times U'') = \{(x,g(x)): x\in U'\}$
+		\item \textit{Lokale Beschreibung als Nullstellenmenge:} $\forall a\in M$ existiert offene Umgebung $U\subseteq \mathbb R^n$ und stetig differenzierbare Funktionen $f_1,\dots,f_{n-k}:U\rightarrow \mathbb R$ mit $\forall x\in M\cap U: \text{Rang}\frac{\partial(f_1,\dots,f_{n-k})}{\partial(x_1,\dots,x_{n-k})}(x) = n-k$ und $M\cap U = \{x\in U : f_1(x) = \dots = f_{n-k}(x)=0\}$.
+		\item \textit{Lokal diffeomorph zu einem $k$-dimensionalen Untervektorraum des $\mathbb R^n$:} Sei $E_k := {x_1,\dots,x_k,0\dots,0 : x_i \in \mathbb R \}\subseteq \mathbb R^n$ die Einbettung eines $k$-dimensionalen Vektorraumes in $\mathbb R^n$. F\"ur alle $a \in M$ existiert eine offene Umgebung $U\subseteq \mathbb R^n$ und ein offenes $V\subseteq \mathbb R^n$, sowie einen $\mathcal C^1$-Diffeomorphismus $F:U\rightarrow V$ mit $F(M\cap U)=E_k\cap V$.
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	Der Beweis sei dem interessierten Leser als \"Ubungsaufgabe \"uberlassen.
+\end{proof}
+
+\begin{corollary}[Niveaumengen]
+	Sei $U\subseteq \mathbb R^n$, $f:U\rightarrow \mathbb R$ stetig differenzierbar, $c\in \mathbb R$ und $N_f(c) := f^{-1}(c)\subseteq \mathbb R^n$. Falls $\forall x\in N_f(c):\nabla f(x)\neq 0$, dann ist $N_f(c)$ eine $(n-1)$-dimensionale Untermannigfaltigkeit des $\mathbb R^n$.
+\end{corollary}
+
+
 
 \section{Tangentenvektor, Normalenvektor an Untermannigfaltigkeit}
+Sei im Folgenden $M$ stets eine $k$-dimensionale Untermannigfaltigkeit des $\mathbb R^n$.
 
-\section{Lagrangemultiplikatoren}
+\begin{definition}[Tangentialvektor]
+	$v \in \mathbb R^n$ hei\ss t Tangentialvektor an $M$ im Punkt $a$, wenn es einen stetig differenzierbaren Weg $\gamma: ]-\varepsilon, \varepsilon[\rightarrow M$ gibt, mit $\gamma(0)=a$ und $\dot\gamma(0) = v$.
+\end{definition}
+\begin{definition}[Normalenvektor]
+	$n \in \mathbb R^n$ hei\ss t Tangentialvektor an $M$ im Punkt $a$, wenn $\langle n,v \rangle=0$ f\"ur alle Tangentenvektoren $v$.
+\end{definition}
+
+\begin{definition}[Tangential-/Normalenraum]
+	$$T_a(M) := \{v\in\mathbb R^n : v\text{ Tangentialvektor an M in a} \}$$
+	$$N_a(M) := \{w\in\mathbb R^n : w\text{ Normalenvektor an M in a} \}$$
+\end{definition}
+\begin{definition}[Tangential-/Normalenb\"undel]
+	$$T(M) := \bigcup_{a\in M}\{a\}\times T_a(M)$$
+	$$N(M) := \bigcup_{a\in M}\{a\}\times N_a(M)$$
+\end{definition}
+
+\begin{theorem}[Basis des Tangential-/Normalenraums]
+	F\"ur jede lokale Parametrisierung $\Phi$ mit $\Phi(t_0)=a$ ist $\{D_1\Phi(t_0),\dots,D_k\Phi(t_0)\}$ eine Basis von $T_a(M)$.
+	
+	Ist $U\subseteq \mathbb R^n$ eine offene Umgebung von $a$ und $M$ nahe $a$ gegeben durch $M\cap U=\{x \in U : f_1(x) = \dots = f_{n-k}(x)=0\}$, dann ist $\{\nabla f_1(a),\dots,\nabla f_{n-k}(a)\}$ eine Basis von $N_a(M)$.
+\end{theorem}
+
+\begin{corollary}[Lagrangemultiplikatoren]
+	Sei $U\subseteq \mathbb R^n$, $\underbrace{f}_{\text{Hauptbedingung}},\underbrace{g_1,\dots,g_r}_{Nebenbedingungen}:U\rightarrow \mathbb R$ stetig differenzierbar, $r \leq n$, Rang der Jacobimatrix $D(g_1,\dots,g_r)$ maximal f\"ur alle $x\in M$, wobei $M=\{x\in U : g_1(x)=\dots=g_r(x)=0\}$.
+	
+	Falls $f$ in $a\in M$ ein lokales Minimum/Maximum besitzt, dann existieren $\lambda_1,\dots,\lambda_r$, sodass $$\nabla f(a)=\sum_{i=1}^r \lambda_i \nabla g_i(a)$$
+\end{corollary}
+\begin{proof}
+	Idee: Wissen, dass $M$ eine $(n-r)$-dimensionale Mannigfaltigkeit ist.
+	
+	Angenommen $f$ habe in $a$ ein lokales Maximum/Minimum, dann gilt f\"ur jeden $\mathcal C^1$ Weg $\gamma$ auf $M$ mit $\gamma(0)=a$
+	
+	$$0 = \frac{\partial}{\partial t}(f(\gamma(t)))|_{t=0} = \langle \nabla f(\gamma(0)), \dot\gamma(0) \rangle$$
+	
+	Da das f\"ur beliebige Wege $\gamma$ gilt durchlaufen wir dabei den ganzen Tangentialraum; also ist $\nabla f(a) \in N_a(M)$.
+\end{proof}
+
