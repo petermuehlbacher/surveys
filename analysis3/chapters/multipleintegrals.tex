@@ -1,18 +1,121 @@
 \section{Iteriertes Integral und Vertauschung der Reihenfolge}
+\begin{lemma}[Reihenfolge Doppelintegral]
+	Ist $f:[a,b]\times[c,d]\rightarrow \mathbb R$ stetig, dann gilt:
+	
+	$$\int_c^d \left(\int_a^b f(x,y) dx \right)dy = \int_a^b \left(\int_c^d f(x,y) dy \right)dx$$
+\end{lemma}
+\begin{proof}
+	Idee: Definiere Hilfsfunktion $\varphi(y):=\int_a^b\left(\int_c^y f(x,t)dt \right)dx$, man sieht $\varphi'(y)=\int_a^b f(x,y)dx$. Setzt man nun das Integral in der verkehrten Reihenfolge an, benutzt die Identit\"at $\varphi'(y)=\int_a^b f(x,y)dx$ und $\varphi(c)=0$ erh\"alt man das gew\"unschte Ergebnis.
+\end{proof}
+\begin{definition}[Integral \"uber Quader]
+	Sei $Q = [a_1,b_1]\times\dots\times[a_n,b_n]$ ein Quader, dann ist f\"ur jede stetige Funktion $f:Q\rightarrow \mathbb R$ das Integral von $f$ \"uber $Q$ definiert als: $\int_Q f(x)dx := \int_{a_n}^{b_n} \left(\dots\left(\int_{a_1}^{b_1}f(x_1,\dots,x_n)dx_1\right)\dots\right)dx_n$.
+\end{definition}
+\begin{definition}[Support einer Funktion]
+	Sei $U\subseteq \mathbb R^n$, $f:U\rightarrow\mathbb R$, dann ist der Tr\"ager von $f$ definiert als: $\text{supp}f:=\overline{\{x\in U: f(x)\neq 0\}}\cap U$
+\end{definition}
+\begin{definition}[Vektorraum stetiger Funktionen mit kompaktem Tr\"ager]
+	Mit $\mathcal C_c(U):=\{f\in \mathcal C(U) : \text{supp}f \text{ ist kompakt}\}$ bezeichnen wir den Vektorraum stetiger Funktionen mit kompaktem Tr\"ager.
+\end{definition}
+\begin{definition}
+	F\"ur $f\in\mathcal C_c$ definieren wir $\int_{\mathbb R^n} f(x)dx := \int_Q f(x)dx$ f\"ur ein geeignetes $Q$.
+\end{definition}
+
+
 
 \section{Allgemeine Eigenschaften von Integralen}
+\begin{theorem}[Eigenschaften des Integrals auf $\mathcal C_c(\mathbb R^n)$]
+	Seien $f,g\in \mathcal C_c(\mathbb R^n)$, $\lambda\in \mathbb R$, dann gilt:
+	
+	\begin{itemize}
+		\item $\int_{\mathbb R^n}(f+\lambda g)(x)dx=\int_{\mathbb R^n} f(x)dx + \lambda\int_{\mathbb R^n} g(x)dx$
+		\item angenommen $\forall x\in\mathbb R^n: f(x)\leq g(x)$, dann gilt: $\int_{\mathbb R^n} f(x)dx \leq \int_{\mathbb R^n} g(x)dx$
+		\item sei $a\in\mathbb R^n$, dann gilt: $\int_{\mathbb R^n} f(x+a)dx = \int_{\mathbb R^n} f(x)dx$
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	Die ersten beiden Punkte folgen direkt aus der Definition (iterierte eindimensionale Integrale), der letzte Punkt mittels Substitution in jedem der iterierten Integrale.
+\end{proof}
+\begin{remark}[Integral als lineares Funktional]
+	Das so definierte Integral ist ein lineares, monotones und translationsinvariantes Funktional auf $\mathcal C_c(\mathbb R^n)$; man kann zeigen, dass jedes lineare Funktional mit diesen Eigenschaften (bis auf Normierung) gerade durch ein Integral gegeben sein muss.
+\end{remark}
+
+\begin{theorem}[Stetigkeit des Integrals]
+	Seien $f,f_k\in\mathcal C_c(\mathbb R^n)$ f\"ur $k\in\mathbb N$ und es existiere $K$ kompakt mit $\text{supp}(f_k)\subseteq K$. Wenn $f_k \rightarrow f$ glm., dann 
+	
+	$$\lim_{k\rightarrow\infty}\int_{\mathbb R^n}f_k(x)dx = \int_{\mathbb R^n} f(x)dx.$$
+\end{theorem}
+\begin{proof}
+	\todo{wof\"ur braucht man hier das $\varphi$?}
+\end{proof}
+
+
+
+
 
 \section{Partielle Integration}
+Im Folgenden bezeichne $\tilde f(x):=\begin{cases} f(x) & x\in U \\ 0 & x\in\mathbb R^n \setminus U \end{cases}$
+\begin{definition}[Integral \"uber offene Teilmengen]
+	F\"ur $U\subseteq \mathbb R^n$ offen, setze $\int_U f(x)dx := \int_{\mathbb R^n} \tilde f(x)dx$
+\end{definition}
+\begin{theorem}
+	Sei $f\in\mathcal C^1(U), \varphi\in\mathcal C_c^1(U)$, dann gilt:
+	$$\int_U D_j\varphi(x)=0$$
+	und
+	$$\int_U D_j f(x)\varphi(x)dx=-\int_U f(x) D_j\varphi(x)dx$$
+\end{theorem}
+\begin{proof}
+	Die erste Gleichung folgt durch aufspalten in iterierte Integrale und Vertauschung der abgeleiteten Komponente nach innen; Integration \"uber $0$ bleibt $0$ und das Ergebnis folgt.
+	
+	Die zweite Gleichung folgt aus partieller Integration (erinnere: $D_j(f\varphi) = D_j f\varphi + f D_j\varphi$) und daraus, dass $\int_U D_j(f\varphi)=0$ ist (wegen der ersten Gleichung).
+\end{proof}
+
+
 
 \section{Prinzip von Cavalieri}
+Idee: Schneide $K\subseteq \mathbb R^n$ in $(n-1)$-dimensionale ``Scheiben'' $K_t:=\{x'\in\mathbb R^{n-1}:(x',t)\in K\}\subseteq \mathbb R^{n-1}$.
+\begin{theorem}[Cavalieri]
+	Sei $K\subseteq \mathbb R^n$ kompakt, dann gilt:
+	$$\text{Vol}_n(K) = \int_{\mathbb R}\text{Vol}_{n-1}(K_t)dt$$
+\end{theorem}
+\begin{proof}
+	$K_t$ ist wieder kompakt und es gilt $\chi_{K_t}(x')=\chi_K(x',t)$, daher ist
+	
+	$$\text{Vol}_n(K) = \int_{\mathbb R}\int_{\mathbb R^{n-1}}\chi_{K_t}(x')dx'dt = \int_{\mathbb R}\text{Vol}_{n-1}(K_t)dt.$$
+\end{proof}
+
+
 
 \section{Transformationsformel (genaue Formulierung, Partition der Eins, Beweisidee)}
+\begin{theorem}[Transformationsformel]
+	Seien $U,V\subseteq\mathbb R^n$ offen und $\Phi : U\rightarrow V$ ein $\mathcal C^1$-Diffeomorphismus, dann gilt: $\forall f\in\mathcal C_c(V)$ ist $f\circ\Phi \in \mathcal C_c(U)$ und
+	
+	$$\int_U f(\Phi(x))|\text{det}D\Phi(x)|dx = \int_V f(x)dx$$
+\end{theorem}
+\begin{proof}
+	Idee:
+	\begin{itemize}
+		\item Jeder Diffeomorphismus $G$ l\"a\ss t sich lokal als Verknüpfung zweier Typen aufspalten: \\Typ A: $G(x)=(x_1,\dots,x_{m-1},g(x),x_{m+1},\dots,x_n)$\\Typ B: Transposition die zwei Basisvektoren vertauscht und alle anderen fix l\"a\ss t
+		\item Die Partition der Eins erm\"oglicht genau so eine Lokalisierung.
+		\item Durch Aufspalten in iterierte Integrale kann man die Substitutionsregel aus dem Eindimensionalen auf Typ A anwenden, Typ B kehrt lediglich das Vorzeichen um.
+	\end{itemize}
+	\todo{diesen Beweis nochmal genau anschauen}
+\end{proof}
+
 
 \section{Oberfl\"achenintegrale \"uber Funktionen und \"uber Vektorfelder}
+\begin{definition}[Oberfl\"achenintegral im $\mathbb R^3$]
+	Sei $T\subseteq \mathbb R^2$ offen, $\Phi:T\rightarrow \mathbb R^3$ eine Immersion und $K\subseteq T$ kompakt, dann definiert man f\"ur stetige $f:\Phi(K)\rightarrow \mathbb R$ das \textit{Oberfl\"achenintegral}
+	$$\int_{\Phi(K)}fdS := \int_K f(\Phi(t))||N_\Phi(t)||dt$$ wobei $N_\Phi(t) = D_{t_1}\Phi(t)\times D_{t_2}\Phi(t)$, also der Normalenvektor (=Kreuzprodukt der Tangentialvektoren) ist.
+\end{definition}
 
-\section{Konstruktion des Lebesgue-Integrals (Treppenfunktionen, H\"ullreihen, $||\dot||_1$-Halbnorm)}
+\begin{lemma}[Unabh\"angigkeit von der Parametrisierung]
+	
+\end{lemma}
 
-\section{Eigenschaften des Lebesgue-Integrals}
 
-\section{Klassen Lebesgue-integrierbarer Funktionen}
 
+
+
+
+\section{Lebesgue-Integral}
+Siehe \href{http://homepage.univie.ac.at/karlheinz.groechenig/lebesgue.pdf}{Einleitung von Gr\"ochenig} (ist bereits kurz und b\"undig zusammengefasst).
