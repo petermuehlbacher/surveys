@@ -1,11 +1,183 @@
 \section{Green und Gau\ss \, f\"ur Normalenbereiche}
+Sei f\"ur diesen Abschnitt (Green und Gau\ss \, f\"ur Normalenbereiche) 
+
+
+\begin{theorem}[Gau\ss]
+	$U\subseteq \mathbb R^3$ offen, $M$ eine $3$-dimensionale $\mathcal C^2$-Untermannigfaltigkeit, $A\subseteq M$ kompakt mit glattem Rand, $\nu:M\rightarrow\mathbb R^3$ das Einheitsnormalenfeld auf $\partial A$, $f=(f_1,-f_2,f_3)$\footnote{Das ``$-$'' handelt man sich beim Vertauschen von $dx\wedge dz$ ein, siehe Abschnitt zu \"au\ss eren Ableitungen. Alternativ k\"onnte man dem Vorzeichen auch aus dem Weg gehen indem man die zweite Komponente von $\omega$ in der Form $d_z\wedge d_x$ schreibt; das wird allerdings leichter f\"ur einen Tippfehler gehalten.}, $\omega = f_1 d_y\wedge d_z+f_2 d_x\wedge d_z+ f_3 d_x\wedge d_z$:
+	
+	$$\int_{\partial A}\omega = \boxed{\int_{\partial A}\langle f,\nu \rangle dS = \int_A \text{div}(f)} = \int_A d\omega$$
+\end{theorem}
+
+\begin{theorem}[Green]
+	$\partial A$ positiv orientiert, st\"uckweise stetig differenzierbar eine geschlossene Kurve in einer Ebene und $A$ ein kompaktes Fl\"achenst\"uck. $f,g:A\rightarrow\mathbb R$ stetig differenzierbar.
+	
+	$$\int_{\partial A} (fdx+gdy) = \int_A \left(\frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}\right)d(x,y)$$
+\end{theorem}
+\begin{remark}[Spezialfall]
+	W\"ahlt man $\frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}=1$ (e.g. durch $f(x,y)=-\frac{y}{2}, g(x,y)=\frac{x}{2}$) erh\"alt man genau $\text{Vol}_2(A)$.
+\end{remark}
+
+
+
+
 
 \section{Differentialformen}
+\begin{definition}[$k$-Form]
+	Sei $U\subseteq \mathbb R^n$ offen, dann nennt man eine eine Abbildung $\omega:U \rightarrow \bigwedge^k(\mathbb R^n)^*$ eine $k$-Form.\footnote{Streng genommen nehmen $k$-Formen Elemente aus dem Tangentialraum; da man den im Falle von Untermannigfaltigkeiten (also im euklidischen Raum) aber stets wieder mit dem euklidischen Raum identifizieren kann wird hier darauf kein Wert mehr gelegt.}
+\end{definition}
+\begin{remark}[Alternative Notation]
+	Sei $\{dx_{i_1}(p)\wedge\dots\wedge dx_{i_k}(p)\}$ die zur Standardbasis im $\mathbb R^n$ duale Basis, dann erh\"alt man eine eindeutige Darstellung von $k$-Formen durch
+	
+	$$\omega = \sum_{1\leq i_1<\dots<i_k\leq n}f_{i_1,\dots,i_k}dx_{i_1}\wedge\dots\wedge dx_{i_k} =: \sum_{|I|=k}f_I dx_I$$
+	
+	mit Komponentenfunktionen $f_{i_1,\dots,i_k}:U\rightarrow \mathbb R$.
+\end{remark}
+\begin{definition}[Stetigkeit, etc.]
+	Eine $k$-Form hei\ss t stetig/differenzierbar/\dots wenn es ihre Komponentenfunktionen sind.
+\end{definition}
+
+\begin{definition}[Elementare Operationen]
+	Addition, Skalarmultiplikation und das Wedge-Produkt sind alle punktweise definiert.
+\end{definition}
+
+
+
+
 
 \section{\"Au\ss ere Ableitung (Spezialf\"alle: div, rot, grad)}
+\begin{definition}[\"Au\ss ere Ableitung]
+	F\"ur $U\subseteq\mathbb R^n$ offen, $k=0$ und $f:U\rightarrow \mathbb R \in \mathcal C^1$ ist die \"au\ss ere Ableitung wie gewohnt definiert durch:
+
+	$$df:=\sum_{i=1}^n D_i fdx_i$$
+
+	F\"ur $k\geq 1$ und $\omega = \sum_{|I|=k}f_I dx_I$:
+
+$$d\omega := \sum_{|I|=k}df_I\wedge dx_I$$
+\end{definition}
+
+\begin{remark}[Spezialf\"alle im $\mathbb R^3$]
+	\begin{enumerate}
+		\item $k=1$ und $\omega = \sum_{i=1}^3 f_i dx_i$: $$d\omega = \sum_{i,j=1}^3 D_i f_j dx_i\wedge dx_j = \sum_{1\leq i < j \leq 3}(D_i f_j - D_j f_i)dx_i\wedge dx_j$$ wobei diese Koeffizienten genau denen von $\text{rot}(f_1,f_2,f_3)$ entsprechen.
+		\item $k=2$ und $\omega = f_{12}dx\wedge dy + f_{13}dx\wedge dz+f_{23}dy\wedge dz$: $$d\omega = D_3 f_{12} dz\wedge dx\wedge dy + D_2 f_{13}dy\wedge dx\wedge dz + D_1 f_{23}dx\wedge dy\wedge dz$$
+		$$= (D_1 f_{23} - D_2 f_{13} + D_3 f_{12})dx\wedge dy\wedge dz$$ Insbesondere l\"asst sich unter der Identifizierung $v:=(f_{12},-f_{13},f_{23})$ das Ergebnis auch als $d\omega = \text{div}(v)dx\wedge dy\wedge dz$ schreiben.
+	\end{enumerate}
+\end{remark}
+\begin{lemma}[Linearit\"at]
+	$d(\omega_1 + \lambda \omega_2) = d\omega_1 + \lambda d\omega_2$
+\end{lemma}
+
+\begin{theorem}[Graduierte Leibniz-Regel] Seien $\omega_k,\omega_l$ zwei stetig differenzierbare $k$-/$l$-Formen, dann gilt:
+	$$d(\omega_k\wedge\omega_l) = (d\omega_k)\wedge\omega_l+(-1)^k\omega_k\wedge(d\omega_l)$$
+\end{theorem}
+\begin{theorem}[$d\circ d = 0$]
+	Ist $\omega$ eine $\mathcal C^2$ $k$-Form, dann gilt:
+	$$d(d\omega)=0$$
+\end{theorem}
+\begin{remark}
+	Im $\mathbb R^3$ bedeutet das gerade $$\text{rot}(\nabla f)=0$$ F\"ur $\omega$ $2$-Form wissen wir dass f\"ur ein geeignetes $v$ gilt: $d\omega = \text{div}(v)dx\wedge dy\wedge dz$. W\"ahlt man nun $b$ so, dass $\text{rot}(b)=v$, gilt: $$\text{div}(\text{rot}(b))=0$$
+\end{remark}
+
+\begin{definition}[Geschlossenheit]
+	Eine $k$-Form $\omega$ hei\ss t geschlossen wenn $d\omega = 0$.
+\end{definition}
+\begin{remark}
+	Für $k=1$ stimmt diese Definition mit der f\"ur $1$-Formen \"uberein, denn $d\omega = \sum_{i,j=1}^n D_i f_j dx_i\wedge dx_j = \sum_{1\leq i < j \leq n}(D_i f_j - D_j f_i)dx_i\wedge dx_j$.
+\end{remark}
+
+\begin{definition}[Exaktheit]
+	Sei $k\geq 1$ und $\omega$ eine stetige $k$-Form auf $U$ offen, dann hei\ss t $\omega$ exakt wenn es eine auf $U$ differenzierbare $(k-1)$-Form $\nu$ gibt, sodass $d\nu = \omega$.
+\end{definition}
+\begin{remark}
+	Ist $\omega=d\nu$ exakt, so gilt $d\omega = d(d\nu) = 0$, also folgt Geschlossenheit.
+\end{remark}
+\begin{theorem}[Poincar\'e]
+	$U$ sternf\"ormig und $\omega$ geschlossene stetig differenzierbare $k$-Form auf $U$ $\Leftrightarrow$ $\omega$ exakt.
+\end{theorem}
+
+
+
+
+
+
+
 
 \section{Integral \"uber Differentialformen}
+\begin{definition}[Integration von $n$-Formen]
+	Ist $K\subseteq U \subseteq \mathbb R^n$, $K$ kompakt, $U$ offen und $\omega=fdx_1\wedge\dots\wedge dx_n, f:U\rightarrow \mathbb R$ eine stetige $n$-Form
+	$$\int_K \omega := \int_K f(x)dx$$
+\end{definition}
+
+\begin{definition}[Orientierungserhaltende Abbildungen]
+	$U,V \subseteq \mathbb R^n$ offen, $\Phi:U\rightarrow V$ ein $\mathcal C^1$-Diffeomorphismus.
+	
+	$\Phi$ hei\ss t orientierungstreu wenn $\text{det}(D\Phi)>0 \forall x\in U$ und orientierungsumkehrend sonst.\footnote{$\text{det}(D\Phi)=0$ ist unm\"oglich weil Diffeomorphismus.}
+\end{definition}
+
+\begin{theorem}[Unabh\"angigkeit der Parametrisierung]
+	Ist $U,V \subseteq \mathbb R^n$ offen, $K\subseteq U$ kompakt, $\Phi:U\rightarrow V$ ein $\mathcal C^1$-Diffeomorphismus und $\omega$ stetige $n$-Form auf $V$.
+	
+	$$\int_{\Phi(K)} \omega = \pm \int_K \Phi^*\omega$$
+	
+	wobei das Vorzeichen positiv ist wenn $\Phi$ orientierungserhaltend ist und negativ sonst.
+\end{theorem}
+\begin{proof}
+	Transformationsformel.
+\end{proof}
+
+
+
+
+
+
+
 
 \section{Pullback}
+\begin{definition}[Pullback]
+	$U\subseteq\mathbb R^n$, $V\subseteq\mathbb R^m$ offen, $\Phi = (\phi_1,\dots,\phi_n):V\rightarrow U \in \mathcal C^1$, $\omega$ $k$-Form auf $U$:
+
+$$\Phi^*\omega := \sum_{|I|=k} (f_I\circ\Phi)d\phi_I$$
+\end{definition}
+\begin{remark}[Spezialf\"alle]a\newline
+	\begin{enumerate}
+		\item $k=0$: $\Phi^*f = f\circ\Phi$
+		\item $k=1$: $\omega = \sum_{i=1}^n f_i dx_i$, also $\Phi^*\omega = \sum_{i=1}^n (f_i\circ\Phi) d\phi_i$, wobei $d\phi_i = \sum_{j=1}^m D_j\phi_i dt_j$.
+		\item $m=k$: $\Phi^*\omega = \sum_{|I|=k}(f_I\circ \Phi)d\phi_I$ mit $d\phi_I = \text{det}((D_j\Phi_{i_l})_{l,j=1,\dots,k})dt_1\wedge\dots\wedge dt_k$
+		\item $m=n=k$: $\Phi^*\omega = (f\circ\Phi)\text{det}(D\Phi)dt_1\wedge\dots\wedge dt_n$ f\"ur $\omega = fdx_1\wedge\dots\wedge dx_n$
+	\end{enumerate}
+\end{remark}
+
+\begin{theorem}[Eigenschaften von Pullbacks]a\newline
+	\begin{enumerate}
+		\item $\Phi^*(\omega_1+\lambda\omega_2) = \Phi^*\omega_1 + \lambda\Phi^*\omega_2$
+		\item $\Phi^*(\omega_1\wedge\omega_2) = (\Phi^*\omega_1)\wedge(\Phi^*\omega_2)$
+		\item $\omega$ in $\mathcal C^1$, $\Phi$ in $\mathcal C^2$, dann gilt $d(\Phi^*\omega)=\Phi^*(d\omega)$
+		\item F\"ur geeignete Definitions und Bildbereiche: $\Psi^*(\Phi^*\omega)=(\Phi^*\circ\Psi^*)\omega$
+	\end{enumerate}
+\end{theorem}
+
+
+
+
+
 
 \section{Allgemeine Formulierung des Satzes von Stokes}
+\begin{theorem}[Satz von Stokes]
+	$k\geq 2$, $U\subseteq\mathbb R^n$ offen, $M\subseteq U$ eine orientierte $k$-dimensionale $\mathcal C^2$ Untermannigfaltigkeit\footnote{$\mathcal C^1$ reicht eigentlich, $\mathcal C^2$ steht im Skriptum weil es leichter zu beweisen ist.}, $A\subseteq M$ kompakt mit glattem Rand (induzierte Orientierung), $\omega$ stetig differenzierbare $(k-1)$-Form auf $U$, dann gilt:
+	
+	$$\int_A d\omega = \int_{\partial A} \omega$$
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
