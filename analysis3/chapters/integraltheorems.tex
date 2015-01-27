@@ -1,24 +1,4 @@
-\section{Green und Gau\ss \, f\"ur Normalenbereiche}
-Sei f\"ur diesen Abschnitt (Green und Gau\ss \, f\"ur Normalenbereiche) 
-
-
-\begin{theorem}[Gau\ss]
-	$U\subseteq \mathbb R^3$ offen, $M$ eine $3$-dimensionale $\mathcal C^2$-Untermannigfaltigkeit, $A\subseteq M$ kompakt mit glattem Rand, $\nu:M\rightarrow\mathbb R^3$ das Einheitsnormalenfeld auf $\partial A$, $f=(f_1,-f_2,f_3)$\footnote{Das ``$-$'' handelt man sich beim Vertauschen von $dx\wedge dz$ ein, siehe Abschnitt zu \"au\ss eren Ableitungen. Alternativ k\"onnte man dem Vorzeichen auch aus dem Weg gehen indem man die zweite Komponente von $\omega$ in der Form $d_z\wedge d_x$ schreibt; das wird allerdings leichter f\"ur einen Tippfehler gehalten.}, $\omega = f_1 d_y\wedge d_z+f_2 d_x\wedge d_z+ f_3 d_x\wedge d_z$:
-	
-	$$\int_{\partial A}\omega = \boxed{\int_{\partial A}\langle f,\nu \rangle dS = \int_A \text{div}(f)} = \int_A d\omega$$
-\end{theorem}
-
-\begin{theorem}[Green]
-	$\partial A$ positiv orientiert, st\"uckweise stetig differenzierbar eine geschlossene Kurve in einer Ebene und $A$ ein kompaktes Fl\"achenst\"uck. $f,g:A\rightarrow\mathbb R$ stetig differenzierbar.
-	
-	$$\int_{\partial A} (fdx+gdy) = \int_A \left(\frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}\right)d(x,y)$$
-\end{theorem}
-\begin{remark}[Spezialfall]
-	W\"ahlt man $\frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}=1$ (e.g. durch $f(x,y)=-\frac{y}{2}, g(x,y)=\frac{x}{2}$) erh\"alt man genau $\text{Vol}_2(A)$.
-\end{remark}
-
-
-
+\textbf{Achtung: Dieses Kapitel ist nach dem Skriptum das online verf\"ugbar ist/Wikipedia erarbeitet worden. Sollte etwas anders als in der Vorlesung gemacht worden sein bitte ich um einen Hinweis!}
 
 
 \section{Differentialformen}
@@ -162,13 +142,35 @@ $$\Phi^*\omega := \sum_{|I|=k} (f_I\circ\Phi)d\phi_I$$
 
 \section{Allgemeine Formulierung des Satzes von Stokes}
 \begin{theorem}[Satz von Stokes]
-	$k\geq 2$, $U\subseteq\mathbb R^n$ offen, $M\subseteq U$ eine orientierte $k$-dimensionale $\mathcal C^2$ Untermannigfaltigkeit\footnote{$\mathcal C^1$ reicht eigentlich, $\mathcal C^2$ steht im Skriptum weil es leichter zu beweisen ist.}, $A\subseteq M$ kompakt mit glattem Rand (induzierte Orientierung), $\omega$ stetig differenzierbare $(k-1)$-Form auf $U$, dann gilt:
+	$k\geq 2$, $U\subseteq\mathbb R^n$ offen, $M\subseteq U$ eine orientierte $k$-dimensionale $\mathcal C^2$ Untermannigfaltigkeit\footnote{$\mathcal C^1$ reicht eigentlich, $\mathcal C^2$ steht im Skriptum weil es leichter zu beweisen ist.}, $A\subseteq M$ kompakt mit glattem Rand\footnote{Rand stets relativ zur Mannigfaltigkeit zu nehmen.} (induzierte Orientierung), $\omega$ stetig differenzierbare $(k-1)$-Form auf $U$, dann gilt:
 	
-	$$\int_A d\omega = \int_{\partial A} \omega$$
+	$$\int_A d\omega = \int_{\partial A} \omega.$$
 \end{theorem}
 
 
+\section{Green und Gau\ss \, f\"ur Normalenbereiche}
+\begin{theorem}[Green]
+	$\partial A$ positiv orientiert, st\"uckweise stetig differenzierbar eine geschlossene Kurve in einer Ebene und $A$ ein kompaktes Fl\"achenst\"uck. $f,g:A\rightarrow\mathbb R$ stetig differenzierbar.
+	
+	$$\int_{\partial A} (fdx+gdy) = \int_A \left(\frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}\right)d(x,y)$$
+\end{theorem}
+\begin{proof}
+	Mit Stokes:
+	$$\int_{\partial A} (fdx+gdy) = \int_{\partial A}\omega = \int_A d\omega $$
+	$$= \int_A \underbrace{D_x f\wedge dx\wedge dx}_{=0} + \underbrace{D_y f\wedge dy\wedge dx}_{=-D_y f\wedge dx\wedge dy}+D_x g\wedge dx\wedge dy + \underbrace{D_y g\wedge dy\wedge dy}_{=0}$$
+	$$= \int_A (D_x g- D_yf)\wedge dx\wedge dy = \int_A \left(\frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}\right)d(x,y)$$
+\end{proof}
 
+\begin{remark}[Spezialfall]
+	W\"ahlt man $\frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}=1$ (e.g. durch $f(x,y)=-\frac{y}{2}, g(x,y)=\frac{x}{2}$) erh\"alt man genau $\text{Vol}_2(A)$.
+\end{remark}
+
+
+\begin{theorem}[Gau\ss]
+	$U\subseteq \mathbb R^3$ offen, $M$ eine $3$-dimensionale $\mathcal C^2$-Untermannigfaltigkeit, $A\subseteq M$ kompakt mit glattem Rand, $\nu:M\rightarrow\mathbb R^3$ das Einheitsnormalenfeld auf $\partial A$, $f=(f_1,-f_2,f_3)$\footnote{Das ``$-$'' handelt man sich beim Vertauschen von $dx\wedge dz$ ein, siehe Abschnitt zu \"au\ss eren Ableitungen. Alternativ k\"onnte man dem Vorzeichen auch aus dem Weg gehen indem man die zweite Komponente von $\omega$ in der Form $d_z\wedge d_x$ schreibt; das wird allerdings leichter f\"ur einen Tippfehler gehalten.}, $\omega = f_1 d_y\wedge d_z+f_2 d_x\wedge d_z+ f_3 d_x\wedge d_z$:
+	
+	$$\int_{\partial A}\omega = \boxed{\int_{\partial A}\langle f,\nu \rangle dS = \int_A \text{div}(f)} = \int_A d\omega$$
+\end{theorem}
 
 
 
