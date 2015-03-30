@@ -35,7 +35,7 @@
 $$d\omega := \sum_{|I|=k}df_I\wedge dx_I$$
 \end{definition}
 
-\begin{remark}[Spezialf\"alle im $\mathbb R^3$]
+\begin{remark}[Spezialf\"alle im $\mathbb R^3$]\leavevmode
 	\begin{enumerate}
 		\item $k=1$ und $\omega = \sum_{i=1}^3 f_i dx_i$: $$d\omega = \sum_{i,j=1}^3 D_i f_j dx_i\wedge dx_j = \sum_{1\leq i < j \leq 3}(D_i f_j - D_j f_i)dx_i\wedge dx_j$$ wobei diese Koeffizienten genau denen von $\text{rot}(f_1,f_2,f_3)$ entsprechen.
 		\item $k=2$ und $\omega = f_{12}dx\wedge dy + f_{13}dx\wedge dz+f_{23}dy\wedge dz$: $$d\omega = D_3 f_{12} dz\wedge dx\wedge dy + D_2 f_{13}dy\wedge dx\wedge dz + D_1 f_{23}dx\wedge dy\wedge dz$$
@@ -61,7 +61,7 @@ $$d\omega := \sum_{|I|=k}df_I\wedge dx_I$$
 	Eine $k$-Form $\omega$ hei\ss t geschlossen wenn $d\omega = 0$.
 \end{definition}
 \begin{remark}
-	Für $k=1$ stimmt diese Definition mit der f\"ur $1$-Formen \"uberein, denn $d\omega = \sum_{i,j=1}^n D_i f_j dx_i\wedge dx_j = \sum_{1\leq i < j \leq n}(D_i f_j - D_j f_i)dx_i\wedge dx_j$.
+	F\"ur $k=1$ stimmt diese Definition mit der f\"ur $1$-Formen \"uberein, denn $d\omega = \sum_{i,j=1}^n D_i f_j dx_i\wedge dx_j = \sum_{1\leq i < j \leq n}(D_i f_j - D_j f_i)dx_i\wedge dx_j$.
 \end{remark}
 
 \begin{definition}[Exaktheit]
@@ -117,7 +117,7 @@ $$d\omega := \sum_{|I|=k}df_I\wedge dx_I$$
 
 $$\Phi^*\omega := \sum_{|I|=k} (f_I\circ\Phi)d\phi_I$$
 \end{definition}
-\begin{remark}[Spezialf\"alle]a\newline
+\begin{remark}[Spezialf\"alle]\leavevmode
 	\begin{enumerate}
 		\item $k=0$: $\Phi^*f = f\circ\Phi$
 		\item $k=1$: $\omega = \sum_{i=1}^n f_i dx_i$, also $\Phi^*\omega = \sum_{i=1}^n (f_i\circ\Phi) d\phi_i$, wobei $d\phi_i = \sum_{j=1}^m D_j\phi_i dt_j$.
@@ -126,7 +126,7 @@ $$\Phi^*\omega := \sum_{|I|=k} (f_I\circ\Phi)d\phi_I$$
 	\end{enumerate}
 \end{remark}
 
-\begin{theorem}[Eigenschaften von Pullbacks]a\newline
+\begin{theorem}[Eigenschaften von Pullbacks]\leavevmode
 	\begin{enumerate}
 		\item $\Phi^*(\omega_1+\lambda\omega_2) = \Phi^*\omega_1 + \lambda\Phi^*\omega_2$
 		\item $\Phi^*(\omega_1\wedge\omega_2) = (\Phi^*\omega_1)\wedge(\Phi^*\omega_2)$
@@ -167,7 +167,7 @@ $$\Phi^*\omega := \sum_{|I|=k} (f_I\circ\Phi)d\phi_I$$
 
 
 \begin{theorem}[Gau\ss]
-	$U\subseteq \mathbb R^3$ offen, $M$ eine $3$-dimensionale $\mathcal C^2$-Untermannigfaltigkeit, $A\subseteq M$ kompakt mit glattem Rand, $\nu:M\rightarrow\mathbb R^3$ das Einheitsnormalenfeld auf $\partial A$, $f=(f_1,-f_2,f_3)$\footnote{Das ``$-$'' handelt man sich beim Vertauschen von $dx\wedge dz$ ein, siehe Abschnitt zu \"au\ss eren Ableitungen. Alternativ k\"onnte man dem Vorzeichen auch aus dem Weg gehen indem man die zweite Komponente von $\omega$ in der Form $d_z\wedge d_x$ schreibt; das wird allerdings leichter f\"ur einen Tippfehler gehalten.}, $\omega = f_1 d_y\wedge d_z+f_2 d_x\wedge d_z+ f_3 d_x\wedge d_z$:
+	$U\subseteq \mathbb R^3$ offen, $M$ eine $3$-dimensionale $\mathcal C^2$-Untermannigfaltigkeit, $A\subseteq M$ kompakt mit glattem Rand, $\nu:M\rightarrow\mathbb R^3$ das Einheitsnormalenfeld auf $\partial A$, $f=(f_1,-f_2,f_3)$\footnote{Das ``$-$'' handelt man sich beim Vertauschen von $dx\wedge dz$ ein, siehe Abschnitt zu \"au\ss eren Ableitungen. Alternativ k\"onnte man dem Vorzeichen auch aus dem Weg gehen indem man die zweite Komponente von $\omega$ in der Form $d_z\wedge d_x$ schreibt; das wird allerdings leichter f\"ur einen Tippfehler gehalten.}, $\omega = f_1 d_y\wedge d_z+f_2 d_x\wedge d_z+ f_3 d_x\wedge d_y$:
 	
 	$$\int_{\partial A}\omega = \boxed{\int_{\partial A}\langle f,\nu \rangle dS = \int_A \text{div}(f)} = \int_A d\omega$$
 \end{theorem}
