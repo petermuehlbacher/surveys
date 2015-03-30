@@ -1,0 +1,30 @@
+\section{Finding implicit solutions}
+\subsection{The idea}
+Given an autonomous differential equation $\dot x = f(x)$, $x(0)=x_0$, $f\in\mathcal C(\mathbb R)$, suppose $f(x_0)\neq 0$, then
+
+\begin{equation*}
+	\int_0^t \frac{\dot x(s)}{f(x(s))}ds = t
+\end{equation*}
+
+Substitution yields
+
+\begin{equation*}
+	\int_0^t \frac{\dot x(s)}{f(x(s))}ds = \int_{x_0}^x \frac{dy}{f(y)} =: F(x)
+\end{equation*}
+
+Since $f(x_0)\neq 0$ (in the following let w.l.o.g. $f(x_0) > 0$) $F$ is strictly monotone near $x_0$ and can thus be inverted, leading to $F^{-1}(t) = x =: \phi(t)$.
+
+\subsection{Maximal interval of definition}
+Let $(x_1,x_2)$ be a maximal interval s.t. $x_1 \leq x_0 \leq x_2$ and $f(x)>0$\footnote{because we assumed w.l.o.g. $f(x_0) > 0$} $\forall x\in (x_1,x_2)$.
+
+Now let $T_+ := \lim_{x\rightarrow x_2} F(x)$ and $T_- := \lim_{x\rightarrow x_1} F(x)$.
+
+If $T_+ < \infty$ either $x_2 = \infty$ (in this case the solution diverges to $+\infty$) or $x_2 < \infty$ (here the solution reaches $x_2$ after finite time $T_+$ and as $x_2$ was chosen s.t. $f(x_2)=0$ there are (potentially) multiple ways of extending the solution).\footnote{note that the fact that the DE is autonomous is crucial as otherwise $f(x_2)=0$ does not imply that the constant function (starting at $x_2$) is a solution for all $t$.}
+
+\section{Finding explicit solutions}
+\subsection{Homogeneous equations}
+$\dot x = f(\frac{x}{t})$ is called a (nonlinear) homogeneous DE.
+
+Now let $y=\frac{x}{t}$ \footnote{$y=y(x,t)$} and see that $dy = \underbrace{\frac{\partial y}{\partial t}}_{-\frac{x}{t^2}} + \underbrace{\frac{\partial y}{\partial x}}_{\frac{1}{t}}\dot x = \frac{f(y)-y}{t}$.\footnote{partial derivative lets $x$ fixed even though it depends on $t$ as well} This is separable.
+
+\section{Qualitative Analysis of First-Order Equations}
