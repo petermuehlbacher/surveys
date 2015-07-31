@@ -1,0 +1,138 @@
+\documentclass[11pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsthm,mathtools}
+\usepackage{hyperref,graphicx}
+\usepackage{todonotes}
+
+\newcommand{\Man}{\mathcal{M}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\eps}{\varepsilon}
+
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{remark}{Remark}
+\newtheorem*{motivation}{Motivation}
+
+\begin{document}
+\chapter{Mode Formalism}
+\begin{definition}[Wavevector]
+	The wavevector $k$ points in the normal direction to the surfaces of constant phase, commonly referred to as wavefronts. Its magnitude $\|k\|$ is inversely proportional\footnote{See \url{https://en.wikipedia.org/wiki/Wave_vector} for details.} to corresponding wave's wavelength.
+\end{definition}
+
+\begin{definition}[Mode]
+	A mode $u_k$, indexed by its wave vector $k$,\footnote{Sometimes a second index is used to denote the polarisation, but in many cases this is dismissed as only ``wavefronts of a single polarisation propagating in the $z$-direction''(Multimode and Continuous-Mode Quantum Optics--Lisa Larrimore) are considered} is a solution of [something like the Maxwell equations]\todo{Look it up.}.
+\end{definition}
+
+``Multimode optical theory'' describes a discrete set of allowed modes; however as the exact structure of the cavity usually is not known (or there is no cavity at all) a continuous set of modes becomes admissible.
+
+An interesting property is that interference only happens between the same modes \todo{Why? Apparently it has something to do with different subspaces of the Hilbert space.} and thus it is reasonable to look for a structure to represent quantum states of a variable number of identical particles (i.e. same Hilbert space, describing a single particle state).
+
+\begin{definition}[Fock space]
+	Let $\mathbb H$ be a Hilbert space describing a single particle, $S_\nu$ the operator that symmetrizes or antisymmetrizes a tensor for $\nu = +, \nu = -$ respectively\footnote{$+$ for bosons (e.g. photons), $-$ for fermions (e.g. electrons)}; then the corresponding Fock space $F_\nu(\mathbb H)$ is defined as the Hilbert space completion of $\bigoplus_{n=0}^{\infty}S_\nu \mathbb H^{\otimes n}$.
+\end{definition}
+\begin{remark}
+	Usually the occupancy number basis is in use, i.e. $|n_0,n_1,\dots,n_k\rangle_\nu = |\psi_0\rangle^{n_0}|\psi_1\rangle^{n_1}\dots|\psi_k\rangle^{n_k}$, denoting that there are $n_i$ particles in the state $\psi_i$, where $n_i\in\{0,1\}$ for fermions (because of the antisymmetry) and $n_i\in\mathbb N$ for bosons.
+\end{remark}
+
+\begin{definition}[Fock state]
+	An element of a Fock space in the occupancy number basis (like in the remark above) is called Fock state.
+\end{definition}
+
+The idea of quantisation was to write the energy of a system not as a continuous variable, but as a multiple of excited states (in our case photons)\todo{physicists may not be happy with this formulation}, so it is interesting to write operators, etc. in terms of number operators.
+
+\begin{definition}[Multi-mode annihilation/creation operators]
+	The annihilation operator $a_k$ acts on a multi-mode Fock state\footnote{Using the notation from the last remark $|\psi_k\rangle$ would correspond to the quantum state (i.e. Hilbert space representation of) a mode $u_k$.} like $$a_k|n_{j_1},\dots,n_k,\dots\rangle = \sqrt{n_k}|n_{j_1},\dots,n_k-1,\dots\rangle.$$
+	
+	The creation operator is its adjoint (usually denoted by) $a_k^\dagger$ which acts on a multi-mode Fock state like $$a_k^\dagger|n_{j_1},\dots,n_k,\dots\rangle = \sqrt{n_k+1}|n_{j_1},\dots,n_k+1,\dots\rangle.$$
+\end{definition}
+
+Note that in the definition above it is implicitly assumed that there are at most countable many modes, denoted by their wavevectors $j_1,j_2,\dots, k$.
+
+It can be shown\footnote{\url{http://homepage.univie.ac.at/reinhold.bertlmann/pdfs/T2_Skript_Ch_5.pdf}} that the Hamiltonian $H$ of a (``single mode'') harmonic oscillator (i.e. the Schrödinger operator with potential $V(x)=\frac{m\omega^2}{2}x^2$) can be written as $\frac{\hbar\omega}{2}(a^\dagger a + aa^\dagger)$, which, using the commutator relation $[a,a^\dagger]=1$, can be written as $\hbar\omega(a^\dagger a + \frac{1}{2})$.
+
+Of course $a^\dagger a$ doesn't change any numbers, but it adds a factor $n$ which motivates the following definition:
+
+\begin{definition}[Number operator]
+	$n := a^\dagger a$ is called the number operator.
+\end{definition}
+\begin{remark}
+	In case of multi-mode Fock states we have to distinguish between a mode number operator $n_k = a_k^\dagger a_k$ and the system number operator $n = \int_k a_k^\dagger a_k dk$.
+\end{remark}
+
+\begin{definition}[Optical phase space]
+	See \url{https://en.wikipedia.org/wiki/Optical_phase_space}, in the following ``natural oscillator units'' will be used (i.e. normalisation factors are neglected).
+\end{definition}
+
+\begin{definition}[Displacement operator]
+	The displacement operator, shifting a mode in the optical phase space by $\alpha$\footnote{Strictly speakingm this is something we have yet to show.}, is defined as:
+	$$D(\alpha) := exp[\alpha a^\dagger - \alpha^*a]$$
+	
+	%Using $a_\psi^\dagger := \int_k\psi(k)a_k^\dagger dk $ this can be generalised to a multimode displacement operator $D_\psi(\alpha) = exp[\alpha a_\psi^\dagger - \alpha^*a_\psi]$.
+\end{definition}
+
+\begin{definition}[Vacuum state]
+	The vacuum state $|0\rangle$ is defined as the lowest eigenfunction of the annihilation operator, i.e. $a|0\rangle = 0$.
+\end{definition}
+
+\begin{theorem}[Heisenberg's uncertainty principle]
+	For every pair of complementary observables $X,Y$ (i.e. they are connected by a Fourier transform\footnote{See \url{https://en.wikipedia.org/wiki/Complementarity_(physics)}; the most prominent example is position and momentum and what's interesting in our case: phase and amplitude}) the following holds true: $$\Delta X\Delta Y\geq \frac{\hbar}{2},$$ where $\Delta X$ is the variance defined as $\sqrt{\langle X^2\rangle - \langle X\rangle^2}$ and $\langle \,.\,\rangle$ is, as usually defined, the observable's expectation value.
+\end{theorem}
+
+Note that it is due to Heisenberg's uncertainty principle that fluctuations can occur in the vacuum state!
+
+\begin{definition}[Coherent state]
+	Eigenfunctions $|\alpha\rangle$ of the annihilation operator $a$ are called coherent states.
+\end{definition}
+
+\begin{itemize}
+	\item One usually identifies the eigenfunction with its eigenvalue, i.e. $a|\alpha\rangle = \alpha|\alpha\rangle$.
+	\item This is the usual definition as used in the literature. By working out properties of coherent states it is more intuitive what they should represent. The most important one is that they attain the minimum in Heisenberg's uncertainty principle with both variances being equally large.
+	\item As coherent states are (up to a multiplicative factor) invariant under the annihilation operator they are no Fock states. To get a representation in the occupancy number basis one can solve a simple recurrence and use the fact that states should be represented by normalised elements of the Hilbert space (i.e. $\|\alpha\|=1$) to arrive at $|\alpha\rangle = \sum_{n=0}^\infty e^{-|\alpha|^2/2}\frac{\alpha^n}{\sqrt{n!}}|n\rangle$.
+	\item As can be seen from the above representation in the occupancy number basis a coherent state does not have a fixed number of photons; the probability of measuring of photon number of $n$ ($P(n) = |\langle n, \alpha\rangle|^2$, where $\langle n|$ is the dual of the Fock state $|n\rangle$) is Poisson distributed.
+	\item For more on coherent states (e.g. proofs) see \url{http://www.ph.tum.de/quantumdynamics/TheoQuantenoptik_Skript_Sbierski.pdf} (one of the best written texts on quantum optics I read so far!).
+\end{itemize}
+
+\begin{definition}[Squeezed state]
+	States where the the equality in Heisenberg's uncertainty principle is attained.
+\end{definition}
+
+To get a better (intuitive) understanding of what a squeezed state is, take a look at \url{https://en.wikipedia.org/wiki/Squeezed_coherent_state}. To understand the pictures you might want to read about quadratures first.
+
+\begin{definition}[Squeeze operator]
+	The squeeze operator $S(\chi)$ is defined as $$S(\chi) = exp[\frac{1}{2}(\chi^*a^2 - \chi {a^\dagger}^2)].$$
+\end{definition}
+
+\begin{itemize}
+	\item Single mode squeezed state can now (generally) be written as $D(\alpha)S(\chi)|0\rangle$.
+	\item Real $\chi$ has the effect of making one variance small while making the other bigger (i.e. squeezing, but not rotating the ellipse).
+	\item The squeeze operator can be generalised to handling multiple modes as well. However, two-mode squeezed states are of particular interest as they enable continuous-variable entanglement. Ralph called it parametric entangling unitary and denoted it by $U(\chi)$.
+\end{itemize}
+
+\begin{definition}[Parametric entangling unitary]
+	$$S_2(\chi) := exp[\chi^*a_{k_1}^\dagger a_{k_2}^\dagger - \chi a_{k_1}a_{k_2}]$$
+\end{definition}
+
+In the occupancy number basis with real $\chi$ the following holds: $S_2(\chi)|0\rangle = \frac{1}{cosh(\chi)}\sum_{n=0}^\infty tanh(\chi)^n |nn\rangle$.
+
+\chapter{General/random remarks}
+
+\begin{remark}
+	Taking a look at \url{https://en.wikipedia.org/wiki/Photon_antibunching} one finds the definition of a second-order intensity correlation function. Take that, generalise it to two different ``sources'' and multiply both sides with $\langle a^\dagger a\rangle$ to get the correlation count as in Ralph's equation (16).
+\end{remark}
+
+\begin{remark}
+	Just like a superposition entanglement also depends on the basis being used. Take care when talking about entanglement (is it mode or particle entanglement?). For a nice explanation see \url{http://arxiv.org/pdf/1405.7703v2.pdf} $>$ Mode vs particle entanglement. 
+\end{remark}
+
+\begin{remark}
+	\url{http://photonics.anu.edu.au/theses/Thesis\%20ANU\%20PhD\%202009\%20Grosse.pdf} p. 44 gives a nice interpretation of the $exp[ik(x-t)]$ term in Ralph's definition of the event operators.
+	
+	My understanding/intuition: Basically changing a mode ($\approx$ frequency!) operator to a time operator by applying a Fourier transform; maybe\todo{ask Ralph about that} the additional factor depending on the mode $k$ is used for ``keeping the dependence on $k$'' while introducing time dependency via something like the Fourier transform.
+	
+	Also notice the similarity to electric field operators (whose eigenfunctions may just be what we call electrons(?))\todo{Take care: Mathematician without internet connection talking about electricity and stuff}
+\end{remark}
+
+
+\end{document}
