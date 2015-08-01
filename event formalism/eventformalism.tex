@@ -4,10 +4,6 @@
 \usepackage{hyperref,graphicx}
 \usepackage{todonotes}
 
-\newcommand{\Man}{\mathcal{M}}
-\newcommand{\Real}{\mathbb{R}}
-\newcommand{\eps}{\varepsilon}
-
 \newtheorem{definition}{Definition}[chapter]
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
@@ -107,20 +103,20 @@ To get a better (intuitive) understanding of what a squeezed state is, take a lo
 \begin{itemize}
 	\item Single mode squeezed state can now (generally) be written as $D(\alpha)S(\chi)|0\rangle$.
 	\item Real $\chi$ has the effect of making one variance small while making the other bigger (i.e. squeezing, but not rotating the ellipse).
-	\item The squeeze operator can be generalised to handling multiple modes as well. However, two-mode squeezed states are of particular interest as they enable continuous-variable entanglement. Ralph called it parametric entangling unitary and denoted it by $U(\chi)$.
+	\item The squeeze operator can be generalised to handling multiple modes as well. However, two-mode squeezed states are of particular interest as they enable continuous-variable entanglement. In his 2009 paper Ralph called it parametric entangling unitary (eq.8) and denoted it by $U(\chi)$.
 \end{itemize}
 
 \begin{definition}[Parametric entangling unitary]
 	$$S_2(\chi) := exp[\chi^*a_{k_1}^\dagger a_{k_2}^\dagger - \chi a_{k_1}a_{k_2}]$$
 \end{definition}
 
-In the occupancy number basis with real $\chi$ the following holds: $S_2(\chi)|0\rangle = \frac{1}{cosh(\chi)}\sum_{n=0}^\infty tanh(\chi)^n |nn\rangle$.
+\begin{itemize}
+	%\item In the Heisenberg picture: $$S_2(\chi)$$
+	\item In the occupancy number basis with real $\chi$ the following holds: $S_2(\chi)|0\rangle = \frac{1}{cosh(\chi)}\sum_{n=0}^\infty tanh(\chi)^n |nn\rangle$.
+\end{itemize}
 
-\chapter{General/random remarks}
 
-\begin{remark}
-	Taking a look at \url{https://en.wikipedia.org/wiki/Photon_antibunching} one finds the definition of a second-order intensity correlation function. Take that, generalise it to two different ``sources'' and multiply both sides with $\langle a^\dagger a\rangle$ to get the correlation count as in Ralph's equation (16).
-\end{remark}
+\chapter{General remarks}
 
 \begin{remark}
 	Just like a superposition entanglement also depends on the basis being used. Take care when talking about entanglement (is it mode or particle entanglement?). For a nice explanation see \url{http://arxiv.org/pdf/1405.7703v2.pdf} $>$ Mode vs particle entanglement. 
@@ -134,5 +130,38 @@ In the occupancy number basis with real $\chi$ the following holds: $S_2(\chi)|0
 	Also notice the similarity to electric field operators (whose eigenfunctions may just be what we call electrons(?))\todo{Take care: Mathematician without internet connection talking about electricity and stuff}
 \end{remark}
 
+\chapter{Rough idea of Ralph's paper}
+Unless otherwise stated the following equations refer to Ralph's 2014 paper.
 
+\subsection{Interpolating standard QFT and Deutsch's model}
+
+The idea for this paper comes from a model that allows particles to travel back in time (i.e. admits metrics like in [dig out the source again]) which allows them to interact with themselves which causes nonlinear evolutions of states, which in turn, is not really ``compatible'' with the concepts of coherence, etc. causing decoherence.
+		
+Now the authors want to generalise this idea to general curved space-times in which they expect some similar effect of decoherence (maybe not as strong, but still present). To do so they first need to generalise the concept of particles interacting with themselves (i.e. nonlinearity caused by weird space-time metrics) to ``less ugly'' curved space-times without wormholes (e.g. the Schwarzschild metric).
+
+One way of getting that effect is to localise the operators so that the same operators do not commute in flat space-time, but they commute ``more'' the more curved space-time is (i.e. the ``closer'' one is to an actual wormhole).\footnote{Which results in finding a nonlinear extension to QFT is to.}
+
+To do so one introduces the parameter $\Delta(t) := t_d - \underbrace{\int_t^{t_d}ds}_{=:\tau}$, where $ds$ is the space-time metric (in our case the Schwarzschild metric), $t$ the global time and $t_d$ the time of some measurement\footnote{It's makes things easier to have some finite time $t_d$ after which we're not interested in the system anymore.}, for both operators in the commutator and takes their difference (see eq.6). For flat space-time $\Delta(t)=t$ for every path and thus this difference for some operators $A,B$ is $\Delta_A - \Delta_B \equiv 0$ which means that Ralph's extension coincides with classical theory. However, if one considers two operators $A,B$ acting on the geodesics of two particles in curved space-time this difference will in general not be zero, resulting in non-linear effects.
+
+Basically this is one formal way of interpolating ``smoothly'' between flat space-time and one with wormholes.
+
+Note: When quantising field theories it is nontrivial to check if the newly found theory still has the same symmetries; this is shown on page 5 (the part after eq.(10)).
+
+\subsection{Event operators}
+The iterated integral is basically the same idea done twice. While the interpretation of $\int dk K(k) e^{ik(x-t)}a_k$ should be clear after the above introduction to the mode formalism (basically it adds one photon at $x$ at time $t$ with some random frequency $\|k\|$ where the probability distribution is given by $K$). Now in order to get the above described effects for the commutator we have to introduce a factor that also takes curvature into account.
+
+$\tau$ can be described as ``the proper time it takes until the measurement'', so it's ``comparable'' to the global time $t$. What does the Fourier transform do? Take some function depending on time and you get a dependence on frequency. In this case the frequency is prescribed by $k$ so the Fourier complement\footnote{It's like position and momentum, see the remarks above for Heisenberg's uncertainty principle.} of $\tau$, which is how Ralph defined $\Omega$, may be interpreted as some kind of curvature dependent frequency.
+
+However, this means that there's not really anything new in the definition in eq.(2), we only have to be careful not to ``count'' the frequency twice which is why the normalisation factor in eq.(4) has to be introduced.
+
+\subsection{PBS}
+I still didn't find too much information on the mathematical formulation of this ``parametric amplification'' (at least nothing that resembled eq.(12)), but I guess that's the mathematical way of describing the entanglement created by the PBS.
+
+For eq.(13) (my guess is that) the terms in the exponentials describe the coordinate change under the Schwarzschild metric. While in flat space-time the coordinate change $(x,t)\rightarrow (x+d,t+d)$(?)\footnote{everything in the units Ralph proposed, i.e. $c=1$, etc.} should leave operators invariant, in curved space-time one somehow has to account for the curvature which is done by the $-x_*-2Mln(x_*)$ terms and we also have to consider the phase shift acquired by the curvature which is what the $\phi$ are for.\todo{check this section}
+
+\subsection{Coincidence count}
+Taking a look at \url{https://en.wikipedia.org/wiki/Photon_antibunching} one finds the definition of a \textit{second-order intensity correlation} function. Take that, generalise it to two different ``sources'' and multiply both sides with $\langle a^\dagger a\rangle$ to get the correlation count as in Ralph's equation (16).
+
+\subsection{Experimental setup}
+Eq.(19) becomes is really just the definition of $\tau$. Draw it!
 \end{document}
